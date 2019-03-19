@@ -23,9 +23,9 @@ const productionTask = function(cb) {
   const tasks = getEnabledTasks('production')
   const rev = TASK_CONFIG.production.rev ? 'rev': false
   const static = TASK_CONFIG.static ? 'static' : false
-  const { prebuild, postbuild } = TASK_CONFIG.additionalTasks.production
+  const { prebuild, postbuild, postreplacefiles } = TASK_CONFIG.additionalTasks.production
 
-  gulpSequence(prebuild, tasks.assetTasks, tasks.codeTasks, rev, 'size-report', static, postbuild, 'replaceFiles', cb)
+  gulpSequence(prebuild, tasks.assetTasks, tasks.codeTasks, rev, 'size-report', static, postbuild, 'replaceFiles', postreplacefiles, cb)
 }
 
 gulp.task('build', productionTask)
